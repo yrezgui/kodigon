@@ -1,0 +1,102 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" xmlns-ng="http://angularjs.org" ng-app="kodigon"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width">
+	<title>Welcome to Foundation | Feed</title>
+	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Luckiest+Guy">
+	<script src="js/modernizr.foundation.js"></script>
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body ng-controller="appController">
+	<nav class="top-bar">
+		<ul>
+			<li class="name">
+				<h1><a href="#">Kodigon</a></h1>
+			</li>
+		</ul>
+		<section>
+			<ul class="left">
+				<li class="divider"></li>
+				<li>
+					<a href="#">About</a>
+				</li>
+				<li class="divider"></li>
+				<li class="has-dropdown">
+					<a class="active" href="#">(en | de) code</a>
+					<ul class="dropdown">
+						<li><a href="#" class="">Base64</a></li>
+						<li><a href="#">MD5 (soon)</a></li>
+						<li><a href="#">SHA1 (soon)</a></li>
+						<li><a href="#">See all &rarr;</a></li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="#">Github</a>
+				</li>
+				<li class="divider"></li>
+			</ul>
+			<ul class="right">
+				<li class="divider"></li>
+				<li>
+					<a href="#">Submit feedback</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+		</section>
+	</nav>
+	<div ng-controller="mainController">
+		<div class="row">
+			<div class="six columns centered">
+				<h1 class="logo">Kodigon <span class="code">base64</span></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="six columns">
+				<form>
+					<fieldset>
+						<legend>Raw</legend>
+						<div class="row">
+							<textarea class="raw" ng-model="raw" ng-change="b64(this.text, false)" placeholder="Just type here as raw text"></textarea>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="six columns">
+				<form>
+					<fieldset>
+						<legend>Encoded</legend>
+						<div class="row">
+							<textarea class="code" ng-model="encoded" ng-change="b64(this.text, true)" placeholder="Or encoded text here"></textarea>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer class="row">
+		<div class="twelve columns">
+			<hr>
+			<div class="row">
+				<div class="six columns">
+					<p><a href="http://projects.yrezgui.com/kodigon/">Kodigon</a> 2012 &copy; <a href="http://www.yrezgui.com">Yacine Rezgui</a>.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/angular.min.js" ng-autobind></script>
+	<script src="js/app.js" ng-autobind></script>
+</body>
+</html>
