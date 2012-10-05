@@ -1,0 +1,42 @@
+nav.top-bar li.name a{
+	color: #e54a4f;
+	font-family: 'Luckiest Guy', cursive;
+	font-weight: normal;
+}
+
+h1.logo {
+	font-size: 60px;
+	text-align:center;
+	font-family: 'Luckiest Guy', cursive;
+	color: #e54a4f;
+}
+
+h1.logo span.code {
+	margin-left: 20px;
+	color:#59a3fc;
+	font-size: 25px;
+	vertical-align: middle;
+	font-weight: normal;
+}
+
+textarea.raw, textarea.code {
+	height: 300px;
+}
+
+div.algorithms .panel {
+	background: #9bc848;
+	text-align: center;
+}
+
+div.algorithms .panel.notyet {
+	background: rgba(155, 200, 72, 0.5);
+}
+
+div.algorithms a{
+	color: #ffffff;
+}
+
+div.description {
+	background: #86c9ef;
+	color: #ffffff;
+}

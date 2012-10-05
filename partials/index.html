@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="six columns centered">
+		<h1 class="logo">Kodigon</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns centered">
+		<div class="panel description">
+			<p>Kodigon is a web application which encode and decode (if possible) text or files in many algorithm formats lke Base64, MD5, SHA1, etc.</p>
+		</div>
+	</div>
+</div>
+<div class="row algorithms">
+	<div class="two columns" ng-repeat="algo in algorithms">
+		<div class="panel" ng-class="{notyet: algo.notyet}" ng-switch on="algo.notyet">
+			<h5 ng-switch-when="true"><a href="#">{{algo.name}}</a></h5>
+			<h5 ng-switch-when="false"><a href="#/algorithm/{{algo.id}}">{{algo.name}}</a></h5>
+		</div>
+	</div>
+</div>

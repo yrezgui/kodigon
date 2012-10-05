@@ -1,0 +1,18 @@
+/* TEAM */                        
+Creator: Yacine Rezgui
+Site: http://www.yrezgui.com
+Google+: https://plus.google.com/112187016667534859316/
+Twitter: @yrezgui
+Github: https://github.com/yrezgui
+Linkedin:
+
+                         
+
+/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
+/* zurb.com */
+/* humanstxt.org */
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery, Orbit, Reveal
+  Software: Coda, Textmate, Git
