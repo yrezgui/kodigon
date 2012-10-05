@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="seven columns centered">
+		<h1 class="logo">Kodigon <span class="code">About</span></h1>
+	</div>
+</div>
+<div class="row">
+	<div class="nine columns centered">
+		<div class="panel">
+			<h5>What's Kodigon ?</h5>
+			<p>Kodigon is a webapplication which encode and decode (if possible) text or files in many algorithm formats lke Base64, MD5, SHA1, etc.</p>
+			<br>
+			<h5>What technologies do you used in ?</h5>
+			<p>Kodigon is based essentially on <a href="http://www.angularjs.org">AngularJS</a> framework. I use too <a href="http://foundation.zurb.com">Foundation</a> as UI library and many opensourced librairies (see complete list <a href="#">here</a>) for encoding and decoding data.</p>
+			<br>
+			<h5>List of algorithms</h5>
+			<ul>
+				<li ng-repeat="algo in algorithms" ng-switch on="algo.notyet">
+					<span ng-switch-when="true">{{algo.name}} (soon)</span>
+					<a href="#/algorithm/{{algo.id}}" ng-switch-when="false">{{algo.name}}</a>
+				</li>
+			</ul>
+			<br>
+			<h5>What is its license ?</h5>
+			<p>
+				I don't know yet, I will certainly choose the MIT license like AngularJS.
+				<br>
+				So you can do everything with it. Just mention me.
+			</p>
+		</div>
+	</div>
+</div>

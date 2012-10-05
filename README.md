@@ -27,9 +27,10 @@ List of algorithms
   - Snefru (soon)
 
 
-What is its licence ?
+What is its license ?
 ---------------------
-I don't know yet, I will certainly choose the MIT licence like AngularJS
+I don't know yet, I will certainly choose the MIT license like AngularJS.
+So you can do everything with it. Just mention me.
 
   [AngularJS]: http://www.angularjs.org
   [Foundation]: http://foundation.zurb.com

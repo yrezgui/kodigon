@@ -1,22 +1,3 @@
-angular.module('alt', []).factory('base64', function() {
-	var base64Instance = function() {
-
-		this.name = 'Base64';
-		this.readonly = false;
-
-		this.encode = function(input) {
-			return window.btoa(input);
-		};
-
-		this.decode = function(input) {
-			return window.atob(input);
-		}
-
-	};
-
-	return new base64Instance();
-});
-
 var mainModule = angular.module('kodigon', [], function($routeProvider, $locationProvider) {
 
 	$routeProvider.when('/', {
@@ -24,14 +5,19 @@ var mainModule = angular.module('kodigon', [], function($routeProvider, $locatio
 		controller: 'indexController'
 	});
 
+	$routeProvider.when('/about', {
+		templateUrl: 'partials/about.html',
+		controller: 'aboutController'
+	});
+
 	$routeProvider.when('/algorithm/:name', {
 		templateUrl: 'partials/algorithm.html',
 		controller: 'algoController'
 	});
 
-	//$locationProvider.html5Mode(true);
-	$routeProvider.otherwise({redirectTo: '/algorithm/base64'});
+	$routeProvider.otherwise({redirectTo: '/'});
 });
+
 
 mainModule.factory('utf8', function() {
 	var utf8Instance = function() {
@@ -78,6 +64,7 @@ mainModule.factory('utf8', function() {
 	return new utf8Instance();
 });
 
+
 mainModule.factory('base64', ['$window', function($window) {
 	var base64Instance = function($window) {
 
@@ -96,6 +83,7 @@ mainModule.factory('base64', ['$window', function($window) {
 
 	return new base64Instance($window);
 }]);
+
 
 mainModule.factory('escape', ['$window', function($window) {
 	var urlencodeInstance = function($window) {
@@ -116,6 +104,7 @@ mainModule.factory('escape', ['$window', function($window) {
 	return new urlencodeInstance($window);
 }]);
 
+
 mainModule.factory('urlencode', ['$window', function($window) {
 	var urlencodeInstance = function($window) {
 
@@ -134,6 +123,7 @@ mainModule.factory('urlencode', ['$window', function($window) {
 
 	return new urlencodeInstance($window);
 }]);
+
 
 mainModule.factory('htmlentities', ['$window', function($window) {
 	var htmlentitiesInstance = function($window) {
@@ -154,6 +144,7 @@ mainModule.factory('htmlentities', ['$window', function($window) {
 
 	return new htmlentitiesInstance($window);
 }]);
+
 
 mainModule.factory('sha256', ['utf8', function(utf8) {
 	var sha256Instance = function(utf8) {
@@ -282,6 +273,7 @@ mainModule.factory('sha256', ['utf8', function(utf8) {
 	return new sha256Instance(utf8);
 }]);
 
+
 mainModule.factory('cr32', ['utf8', function(utf8) {
 	var cr32Instance = function(utf8) {
 
@@ -309,6 +301,7 @@ mainModule.factory('cr32', ['utf8', function(utf8) {
 
 	return new cr32Instance(utf8);
 }]);
+
 
 mainModule.factory('sha1', function() {
 	var sha1Instance = function() {
@@ -484,7 +477,6 @@ mainModule.factory('sha1', function() {
 
 	return new sha1Instance();
 });
-
 
 
 mainModule.factory('md5', function() {
@@ -698,75 +690,100 @@ mainModule.factory('md5', function() {
 	return new md5Instance();
 });
 
+
+mainModule.factory('algorithms', function() {
+	var algorithmsInstance = function() {
+
+		this.list = [
+			{
+				id: 'escape',
+				name: 'Escape',
+				notyet: true
+			},
+			{
+				id: 'htmlentities',
+				name: 'HtmlEntities',
+				notyet: false
+			},
+			{
+				id: 'urlencode',
+				name: 'URLencode',
+				notyet: false
+			},
+			{
+				id: 'base64',
+				name: 'Base64',
+				notyet: false
+			},
+			{
+				id: 'md5',
+				name: 'MD5',
+				notyet: false
+			},
+			{
+				id: 'sha1',
+				name: 'SHA1',
+				notyet: false
+			},
+			{
+				id: 'sha256',
+				name: 'SHA256',
+				notyet: false
+			},
+			{
+				id: 'gost',
+				name: 'Gost',
+				notyet: true
+			},
+			{
+				id: 'cr32',
+				name: 'CR32',
+				notyet: false
+			},
+			{
+				id: 'whirlpool',
+				name: 'Whirlpool',
+				notyet: true
+			},
+			{
+				id: 'ripemd128',
+				name: 'Ripemd128',
+				notyet: true
+			},
+			{
+				id: 'snefru',
+				name: 'Snefru',
+				notyet: true
+			}
+		];
+
+	};
+
+	return new algorithmsInstance();
+});
+
+
 var appController = function($scope, $location) {
 	$scope.location = $location;
 	$scope.algoLocation = new RegExp('^/algorithm');
 };
 
-var indexController = function($scope) {
-	$scope.algorithms = [
-		{
-			id: 'escape',
-			name: 'Escape',
-			notyet: true
-		},
-		{
-			id: 'htmlentities',
-			name: 'HtmlEntities',
-			notyet: false
-		},
-		{
-			id: 'urlencode',
-			name: 'URLencode',
-			notyet: false
-		},
-		{
-			id: 'base64',
-			name: 'Base64',
-			notyet: false
-		},
-		{
-			id: 'md5',
-			name: 'MD5',
-			notyet: false
-		},
-		{
-			id: 'sha1',
-			name: 'SHA1',
-			notyet: false
-		},
-		{
-			id: 'sha256',
-			name: 'SHA256',
-			notyet: false
-		},
-		{
-			id: 'gost',
-			name: 'Gost',
-			notyet: true
-		},
-		{
-			id: 'cr32',
-			name: 'CR32',
-			notyet: false
-		},
-		{
-			id: 'whirlpool',
-			name: 'Whirlpool',
-			notyet: true
-		},
-		{
-			id: 'ripemd128',
-			name: 'Ripemd128',
-			notyet: true
-		},
-		{
-			id: 'snefru',
-			name: 'Snefru',
-			notyet: true
-		}
-	];
+appController.$inject = ['$scope', '$location'];
+
+
+var indexController = function($scope, algorithms) {
+	$scope.algorithms = algorithms.list;
 };
+
+indexController.$inject = ['$scope', 'algorithms'];
+
+
+var aboutController = function($scope, algorithms) {
+	$scope.algorithms = algorithms.list;
+};
+
+aboutController.$inject = ['$scope', 'algorithms'];
+
 
 var algoController = function($scope, $route, $routeParams, $location, base64, md5, sha1, cr32, urlencode, htmlentities, sha256) {
 
@@ -799,8 +816,6 @@ var algoController = function($scope, $route, $routeParams, $location, base64, m
 			break;
 	}
 
-	console.log('new algo page', $routeParams.name, algo.name, algo);
-
 	$scope.readonly = algo.readonly;
 	$scope.name = algo.name;
 
@@ -813,8 +828,3 @@ var algoController = function($scope, $route, $routeParams, $location, base64, m
 };
 
 algoController.$inject = ['$scope', '$route', '$routeParams', '$location', 'base64', 'md5', 'sha1', 'cr32', 'urlencode', 'htmlentities', 'sha256'];
-
-/*
-	'base64', 'sha1', 'cr32', 'urlencode', 'htmlentities', 'sha256'
-	base64, sha1, cr32, urlencode, htmlentities, sha256
-*/

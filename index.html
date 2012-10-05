@@ -1,74 +1,62 @@
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" xmlns-ng="http://angularjs.org" ng-app="kodigon"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<!-- Set the viewport width to device width for mobile -->
-	<meta name="viewport" content="width=device-width">
-	<title>Welcome to Foundation | Feed</title>
-	<link rel="stylesheet" href="css/foundation.css">
-	<link rel="stylesheet" href="css/app.css">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Luckiest+Guy">
-	<script src="js/modernizr.foundation.js"></script>
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-<body ng-controller="appController">
-	<nav class="top-bar">
-		<ul>
-			<li class="name" ng-class="{active: location.path() == '/'}">
-				<h1><a href="#">Kodigon</a></h1>
-			</li>
-		</ul>
-		<section>
-			<ul class="left">
-				<li class="divider"></li>
-				<li ng-class="{active: location.path() == '/about'}">
-					<a href="#">About</a>
-				</li>
-				<li class="divider"></li>
-				<li class="has-dropdown" ng-class="{active: algoLocation.test(location.path())}">
-					<a href="#">Algorithms</a>
-					<ul class="dropdown">
-						<li><a href="#/algorithm/base64" class="">Base64</a></li>
-						<li><a href="#/algorithm/md5">MD5</a></li>
-						<li><a href="#/algorithm/sha1">SHA1</a></li>
-						<li><a href="#/algorithm/base64">See all &rarr;</a></li>
-					</ul>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a href="#">Github</a>
-				</li>
-				<li class="divider"></li>
-			</ul>
-			<ul class="right">
-				<li class="divider"></li>
-				<li>
-					<a href="#">Submit feedback</a>
-				</li>
-				<li class="divider"></li>
-				<li ng-class="{active: location.path() == '/contact'}">
-					<a href="#">Contact</a>
+<html lang="en" xmlns-ng="http://angularjs.org" ng-app="kodigon" ng-controller="appController">
+	<head>
+		<meta charset="utf-8">
+		<title>Kodigon - Example of project using AngularJS</title>
+		<link rel="stylesheet" href="css/foundation.css">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Luckiest+Guy">
+		<link rel="icon" type="image/png" href="favicon.png">
+		<!--[if IE]>
+			<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<![endif]-->
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<nav class="top-bar">
+			<ul>
+				<li class="name" ng-class="{active: location.path() == '/'}">
+					<h1><a href="#">Kodigon</a></h1>
 				</li>
 			</ul>
-		</section>
-	</nav>
-	<div ng-view></div>
-	<footer class="row">
-		<div class="twelve columns">
-			<hr>
-			<div class="row">
-				<div class="six columns">
-					<p><a href="http://projects.yrezgui.com/kodigon/">Kodigon</a> 2012 &copy; <a href="http://www.yrezgui.com">Yacine Rezgui</a>.</p>
+			<section>
+				<ul class="left">
+					<li class="divider"></li>
+					<li ng-class="{active: location.path() == '/about'}">
+						<a href="#/about">About</a>
+					</li>
+					<li class="divider"></li>
+					<li class="has-dropdown" ng-class="{active: algoLocation.test(location.path())}">
+						<a href="#">Algorithms</a>
+						<ul class="dropdown">
+							<li><a href="#/algorithm/base64" class="">Base64</a></li>
+							<li><a href="#/algorithm/md5">MD5</a></li>
+							<li><a href="#/algorithm/sha1">SHA1</a></li>
+							<li><a href="#/">See all &rarr;</a></li>
+						</ul>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="https://github.com/yrezgui/kodigon">Github</a>
+					</li>
+					<li class="divider"></li>
+				</ul>
+			</section>
+		</nav>
+		<div ng-view></div>
+		<footer class="row">
+			<div class="twelve columns">
+				<hr>
+				<div class="row">
+					<div class="six columns">
+						<p><a href="http://projects.yrezgui.com/kodigon/">Kodigon</a> &copy; 2012 <a href="http://www.yrezgui.com">Yacine Rezgui</a></p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
-	<script src="js/angular.min.js" ng-autobind></script>
-	<script src="js/app.js" ng-autobind></script>
-</body>
+		</footer>
+		<script src="js/angular.min.js" ng-autobind></script>
+		<script src="js/app.js"></script>
+	</body>
 </html>
