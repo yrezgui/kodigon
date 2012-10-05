@@ -19,24 +19,24 @@
 <body ng-controller="appController">
 	<nav class="top-bar">
 		<ul>
-			<li class="name">
+			<li class="name" ng-class="{active: location.path() == '/'}">
 				<h1><a href="#">Kodigon</a></h1>
 			</li>
 		</ul>
 		<section>
 			<ul class="left">
 				<li class="divider"></li>
-				<li>
+				<li ng-class="{active: location.path() == '/about'}">
 					<a href="#">About</a>
 				</li>
 				<li class="divider"></li>
-				<li class="has-dropdown">
-					<a class="active" href="#">Algorithms</a>
+				<li class="has-dropdown" ng-class="{active: algoLocation.test(location.path())}">
+					<a href="#">Algorithms</a>
 					<ul class="dropdown">
-						<li><a href="#" class="">Base64</a></li>
-						<li><a href="#">MD5</a></li>
-						<li><a href="#">SHA1</a></li>
-						<li><a href="#">See all &rarr;</a></li>
+						<li><a href="#/algorithm/base64" class="">Base64</a></li>
+						<li><a href="#/algorithm/md5">MD5</a></li>
+						<li><a href="#/algorithm/sha1">SHA1</a></li>
+						<li><a href="#/algorithm/base64">See all &rarr;</a></li>
 					</ul>
 				</li>
 				<li class="divider"></li>
@@ -51,93 +51,13 @@
 					<a href="#">Submit feedback</a>
 				</li>
 				<li class="divider"></li>
-				<li>
+				<li ng-class="{active: location.path() == '/contact'}">
 					<a href="#">Contact</a>
 				</li>
 			</ul>
 		</section>
 	</nav>
-	<div ng-controller="mainController">
-		<div class="row">
-			<div class="six columns centered">
-				<h1 class="logo">Kodigon</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="twelve columns centered">
-				<div class="panel description">
-					<p>Kodigon is a web application which encode and decode (if possible) text or files in many algorithm formats lke Base64, MD5, SHA1, etc.</p>
-				</div>
-			</div>
-		</div>
-		<div class="row algorithms">
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/escape">Escape</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/htmlentities">HtmlEntities</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/urlencode">URLencode</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/base64">Base64</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/md5">MD5</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/sha1">SHA1</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/sha256">SHA256</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel notyet">
-					<h5><a href="#/gost">Gost</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel">
-					<h5><a href="#/cr32">CR32</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel notyet">
-					<h5><a href="#/whirlpool">Whirlpool</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel notyet">
-					<h5><a href="#/ripemd128">ripemd128</a></h5>
-				</div>
-			</div>
-			<div class="two columns">
-				<div class="panel notyet">
-					<h5><a href="#/Snefru">Snefru</a></h5>
-				</div>
-			</div>
-			<!--<div class="two columns">
-				<div class="panel notyet">
-					<h5><a href="#/haval224">haval224</a></h5>
-				</div>
-			</div>-->
-		</div>
-	</div>
+	<div ng-view></div>
 	<footer class="row">
 		<div class="twelve columns">
 			<hr>

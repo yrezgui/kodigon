@@ -1,4 +1,37 @@
-var mainModule = angular.module('kodigon', []);
+angular.module('alt', []).factory('base64', function() {
+	var base64Instance = function() {
+
+		this.name = 'Base64';
+		this.readonly = false;
+
+		this.encode = function(input) {
+			return window.btoa(input);
+		};
+
+		this.decode = function(input) {
+			return window.atob(input);
+		}
+
+	};
+
+	return new base64Instance();
+});
+
+var mainModule = angular.module('kodigon', [], function($routeProvider, $locationProvider) {
+
+	$routeProvider.when('/', {
+		templateUrl: 'partials/index.html',
+		controller: 'indexController'
+	});
+
+	$routeProvider.when('/algorithm/:name', {
+		templateUrl: 'partials/algorithm.html',
+		controller: 'algoController'
+	});
+
+	//$locationProvider.html5Mode(true);
+	$routeProvider.otherwise({redirectTo: '/algorithm/base64'});
+});
 
 mainModule.factory('utf8', function() {
 	var utf8Instance = function() {
@@ -8,7 +41,7 @@ mainModule.factory('utf8', function() {
 				return "";
 			}
 
-			var input = (input + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+			var input = (input + '');
 			var utftext = '',
 				start, end, stringl = 0;
 
@@ -48,6 +81,7 @@ mainModule.factory('utf8', function() {
 mainModule.factory('base64', ['$window', function($window) {
 	var base64Instance = function($window) {
 
+		this.name = 'Base64';
 		this.readonly = false;
 
 		this.encode = function(input) {
@@ -66,6 +100,7 @@ mainModule.factory('base64', ['$window', function($window) {
 mainModule.factory('escape', ['$window', function($window) {
 	var urlencodeInstance = function($window) {
 
+		this.name = 'Escape';
 		this.readonly = false;
 
 		this.encode = function(input) {
@@ -84,6 +119,7 @@ mainModule.factory('escape', ['$window', function($window) {
 mainModule.factory('urlencode', ['$window', function($window) {
 	var urlencodeInstance = function($window) {
 
+		this.name = 'URL Encode';
 		this.readonly = false;
 
 		this.encode = function(input) {
@@ -102,6 +138,7 @@ mainModule.factory('urlencode', ['$window', function($window) {
 mainModule.factory('htmlentities', ['$window', function($window) {
 	var htmlentitiesInstance = function($window) {
 
+		this.name = 'HTML Entities';
 		this.readonly = false;
 
 		this.encode = function(input) {
@@ -121,6 +158,7 @@ mainModule.factory('htmlentities', ['$window', function($window) {
 mainModule.factory('sha256', ['utf8', function(utf8) {
 	var sha256Instance = function(utf8) {
 
+		this.name = 'SHA256';
 		this.readonly = true;
 
 		this.encode = function(input) {
@@ -247,6 +285,7 @@ mainModule.factory('sha256', ['utf8', function(utf8) {
 mainModule.factory('cr32', ['utf8', function(utf8) {
 	var cr32Instance = function(utf8) {
 
+		this.name = 'CR32';
 		this.readonly = true;
 
 		this.encode = function(input) {
@@ -274,6 +313,7 @@ mainModule.factory('cr32', ['utf8', function(utf8) {
 mainModule.factory('sha1', function() {
 	var sha1Instance = function() {
 
+		this.name = 'SHA1';
 		this.readonly = true;
 
 		this.encode = function(input) {
@@ -450,6 +490,7 @@ mainModule.factory('sha1', function() {
 mainModule.factory('md5', function() {
 	var md5Instance = function() {
 
+		this.name = 'MD5';
 		this.readonly = true;
 
 		this.encode = function(input) {
@@ -657,15 +698,123 @@ mainModule.factory('md5', function() {
 	return new md5Instance();
 });
 
-var appController = function() {
-
+var appController = function($scope, $location) {
+	$scope.location = $location;
+	$scope.algoLocation = new RegExp('^/algorithm');
 };
 
-var mainController = function($scope, base64, md5, sha1, cr32, urlencode, htmlentities, sha256) {
-	$scope.b64 = function(text, encoded) {
-		if(encoded)
-			$scope.raw = htmlentities.decode($scope.encoded);
+var indexController = function($scope) {
+	$scope.algorithms = [
+		{
+			id: 'escape',
+			name: 'Escape',
+			notyet: true
+		},
+		{
+			id: 'htmlentities',
+			name: 'HtmlEntities',
+			notyet: false
+		},
+		{
+			id: 'urlencode',
+			name: 'URLencode',
+			notyet: false
+		},
+		{
+			id: 'base64',
+			name: 'Base64',
+			notyet: false
+		},
+		{
+			id: 'md5',
+			name: 'MD5',
+			notyet: false
+		},
+		{
+			id: 'sha1',
+			name: 'SHA1',
+			notyet: false
+		},
+		{
+			id: 'sha256',
+			name: 'SHA256',
+			notyet: false
+		},
+		{
+			id: 'gost',
+			name: 'Gost',
+			notyet: true
+		},
+		{
+			id: 'cr32',
+			name: 'CR32',
+			notyet: false
+		},
+		{
+			id: 'whirlpool',
+			name: 'Whirlpool',
+			notyet: true
+		},
+		{
+			id: 'ripemd128',
+			name: 'Ripemd128',
+			notyet: true
+		},
+		{
+			id: 'snefru',
+			name: 'Snefru',
+			notyet: true
+		}
+	];
+};
+
+var algoController = function($scope, $route, $routeParams, $location, base64, md5, sha1, cr32, urlencode, htmlentities, sha256) {
+
+	var algo;
+
+	switch($routeParams.name){
+		case 'base64':
+			algo = base64;
+			break;
+		case 'md5':
+			algo = md5;
+			break;
+		case 'sha1':
+			algo = sha1;
+			break;
+		case 'cr32':
+			algo = cr32;
+			break;
+		case 'urlencode':
+			algo = urlencode;
+			break;
+		case 'htmlentities':
+			algo = htmlentities;
+			break;
+		case 'sha256':
+			algo = sha256;
+			break;
+		default:
+			algo = base64;
+			break;
+	}
+
+	console.log('new algo page', $routeParams.name, algo.name, algo);
+
+	$scope.readonly = algo.readonly;
+	$scope.name = algo.name;
+
+	$scope.change = function(text, encoded) {
+		if(encoded && !$scope.readonly)
+			$scope.raw = algo.decode($scope.encoded);
 		else
-			$scope.encoded = htmlentities.encode($scope.raw);
+			$scope.encoded = algo.encode($scope.raw);
 	}
 };
+
+algoController.$inject = ['$scope', '$route', '$routeParams', '$location', 'base64', 'md5', 'sha1', 'cr32', 'urlencode', 'htmlentities', 'sha256'];
+
+/*
+	'base64', 'sha1', 'cr32', 'urlencode', 'htmlentities', 'sha256'
+	base64, sha1, cr32, urlencode, htmlentities, sha256
+*/

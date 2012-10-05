@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="seven columns centered">
+		<h1 class="logo">Kodigon <span class="code">{{name}}</span></h1>
+	</div>
+</div>
+<div class="row">
+	<div class="six columns">
+		<form>
+			<fieldset>
+				<legend>Raw</legend>
+				<div class="row">
+					<textarea class="raw" ng-model="raw" ng-change="change(this.text, false)" placeholder="Just type here as raw text"></textarea>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="six columns">
+		<form>
+			<fieldset>
+				<legend>Encoded</legend>
+				<div class="row">
+					<textarea class="code" ng-model="encoded" ng-change="change(this.text, true)" placeholder="Or encoded text here" ng-readonly="readonly"></textarea>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
